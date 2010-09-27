@@ -17,6 +17,13 @@ Add admin user:
 
     rake deadbolt:users:seed_admin[admin_email]
 
+Configure root route in an initializer:
+
+    require 'deadbolt'
+    Deadbolt.setup do |config|
+      config.root_options = { :controller => "Site", :action => "index" }
+    end
+
 ## Views
 Deadbolt comes with view partials for the UI:
 

@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     resources :permissions, :only => :index
   end
 
-  root :to => Deadbolt.root_path
+  root Deadbolt.root_options
 end
