@@ -10,12 +10,44 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100923140423) do
+ActiveRecord::Schema.define(:version => 20100923181147) do
+
+  create_table "permissions", :force => true do |t|
+    t.string   "action",      :null => false
+    t.string   "target_type", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "role_assignments", :force => true do |t|
+    t.integer  "user_id",    :null => false
+    t.integer  "role_id",    :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "role_assignments", ["role_id", "user_id"], :name => "index_role_assignments_on_role_id_and_user_id", :unique => true
+
+  create_table "role_permissions", :force => true do |t|
+    t.integer  "role_id",       :null => false
+    t.integer  "permission_id", :null => false
+    t.integer  "target_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "roles", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "roles", ["name"], :name => "index_roles_on_name", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                               :default => "", :null => false
-    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
+    t.string   "email",                               :default => "",    :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "",    :null => false
+    t.string   "password_salt",                       :default => "",    :null => false
     t.string   "authentication_token"
     t.string   "reset_password_token"
     t.string   "remember_token"
@@ -28,6 +60,7 @@ ActiveRecord::Schema.define(:version => 20100923140423) do
     t.integer  "failed_attempts",                     :default => 0
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.boolean  "admin",                               :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

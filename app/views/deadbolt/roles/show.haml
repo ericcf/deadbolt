@@ -1,0 +1,7 @@
+%h2 Roles
+
+%h3= @role.name
+
+%ul
+  - @role.permissions.each do |permission|
+    %li= permission.human_name

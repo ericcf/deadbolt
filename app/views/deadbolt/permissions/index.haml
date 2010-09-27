@@ -1,0 +1,8 @@
+%h2 Permissions
+
+%p Add permissions from the command line with
+%pre rake deadbolt:permissions:create[model_name]
+
+%ul
+  - @permissions.each do |permission|
+    %li= "can #{permission.action} #{permission.target_type.pluralize}"

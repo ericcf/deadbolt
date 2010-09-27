@@ -1,0 +1,7 @@
+%ul#deadbolt_admin_menu
+  - if can? :read, Deadbolt::User
+    %li= link_to "Users", users_path
+  - if can? :read, Deadbolt::Role
+    %li= link_to "Roles", roles_path
+  - if can? :read, Deadbolt::Permission
+    %li= link_to "Permissions", permissions_path

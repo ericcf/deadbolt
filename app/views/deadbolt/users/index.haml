@@ -1,0 +1,16 @@
+%h2 Users
+
+= form_tag update_all_users_path, :method => :put, :class => "formtastic" do
+  = field_set_tag nil, :class => "inputs" do
+    %ol
+      - @users.each do |user|
+        %li
+          = label_tag nil do
+            = link_to user.email, edit_user_path(user)
+          = label_tag "deadbolt_users[#{user.id}][admin]" do
+            administrator?
+            = check_box_tag "deadbolt_users[#{user.id}][admin]", true, user.admin?
+          = label_tag nil, user.roles.map(&:name).join(", ")
+  = submit_tag "Update Users"
+  or
+  = link_to "Cancel", users_path

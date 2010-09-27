@@ -1,0 +1,8 @@
+%h2= "Edit User Roles for #{@user.email}"
+
+= semantic_form_for @user, :url => user_path(@user), :method => :put do |user_form|
+  = user_form.input :roles, :as => :check_boxes
+  = user_form.buttons do
+    = user_form.commit_button
+    or
+    = link_to "Cancel", users_path

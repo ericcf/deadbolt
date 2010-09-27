@@ -1,12 +1,14 @@
 source 'http://rubygems.org'
 
-gem 'rails', :git => 'git://github.com/rails/rails.git'
-gem 'arel',  :git => 'git://github.com/rails/arel.git'
+gem 'rails', '3.0.0'
 
 gem 'sqlite3-ruby', :require => 'sqlite3'
+gem 'mongrel'
 
+gem 'haml'
 gem 'devise'
 gem 'cancan'
+gem 'formtastic', '~> 1.1.0'
 gem 'app2engine'
 
 group :development, :test do

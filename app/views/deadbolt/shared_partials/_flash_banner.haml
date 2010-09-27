@@ -1,0 +1,3 @@
+%div#deadbolt_flash_banner
+  - flash.each do |key, message|
+    %div.flash_message{ :class => key.to_s }= message

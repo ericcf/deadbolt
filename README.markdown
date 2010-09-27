@@ -1,4 +1,10 @@
 # Deadbolt
 
 ## Setup
-Add a root_path to your routes.
+Seed Permissions:
+
+    rake deadbolt:permissions:seed
+
+Add admin user:
+
+    rake deadbolt:users:seed_admin[admin_email]

@@ -1,7 +1,0 @@
-<%- if user_signed_in? %>
-  <p>You are signed in as <%= current_user.email %></p>
-  <p><%= link_to "sign out", destroy_user_session_path %></p>
-<%- else %>
-  <p>You are not currently signed in</p>
-  <p><%= link_to "sign in", new_user_session_path %></p>
-<%- end %>
