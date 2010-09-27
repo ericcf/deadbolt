@@ -1,4 +1,4 @@
-Deadbolt::Application.routes.draw do
+Rails.application.routes.draw do
   devise_for :users, :class_name => "Deadbolt::User"
 
   scope :module => "deadbolt" do
