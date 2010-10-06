@@ -10,7 +10,7 @@ describe "deadbolt/roles/show" do
   end
 
   it "renders the name" do
-    rendered.should have_selector("h2", :content => @role.name)
+    rendered.should have_selector("h3", :content => @role.name)
   end
 
   it "renders a list of permissions" do

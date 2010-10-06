@@ -1,3 +1,5 @@
+require 'deadbolt'
+
 Rails.application.routes.draw do
   devise_for :users, :class_name => "Deadbolt::User"
 
