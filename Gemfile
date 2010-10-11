@@ -12,7 +12,7 @@ gem 'formtastic'
 #gem 'app2engine'
 
 group :development, :test do
-  gem 'rspec-rails', '>= 2.0.0.beta.19'
+  gem 'rspec-rails', '>= 2.0.0'
   gem 'autotest'
   gem 'webrat'
   gem 'shoulda'
