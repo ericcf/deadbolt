@@ -23,6 +23,12 @@ describe Deadbolt::RolePermission do
 
   it { should have_db_column(:permission_id).with_options(:null => false) }
 
+  it { should have_db_index(:role_id) }
+
+  it { should have_db_index(:permission_id) }
+
+  it { should have_db_index(:target_id) }
+
   # associations
 
   it { should belong_to(:role) }
