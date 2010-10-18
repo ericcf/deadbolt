@@ -1,15 +1,9 @@
 # Deadbolt
 
 ## Setup
-In your host Rails app, require the CanCan, Devise and Formtastic gems:
-
-    gem 'cancan'
-    gem 'devise'
-    gem 'formtastic'
-
 Require Deadbolt:
 
-    gem 'deadbolt', :path => '/path/to/deadbolt'
+    gem 'deadbolt', :git => 'git://github.com/ericcf/deadbolt.git'
 
 Copy over and run the migrations within your host app.
 
