@@ -11,46 +11,49 @@ describe Ability do
   context "admin user" do
 
     before(:each) do
-      user = stub("user", :admin? => true, :roles => [])
-      @ability = Ability.new(user)
+      @user = stub("user", :admin? => true, :roles => [])
     end
 
-    it { @ability.should be_able_to(:manage, :all) }
+    subject { Ability.new(@user) }
+
+    it { should be_able_to(:manage, :all) }
   end
 
   context "user in role with class-level permissions" do
 
     before(:each) do
-      manage_users_permission = mock_model(Deadbolt::Permission,
+      manage_users_permission = stub_model(Deadbolt::Permission,
         :action => "manage", :target_type => "Deadbolt::User")
-      role_permission = mock_model(Deadbolt::RolePermission,
+      role_permission = stub_model(Deadbolt::RolePermission,
         :permission => manage_users_permission, :target_id => nil)
-      manager_role = mock_model(Deadbolt::Role,
+      manager_role = stub_model(Deadbolt::Role,
         :role_permissions => [role_permission])
-      manager = mock_model(Deadbolt::User, :roles => [manager_role],
-        :admin? => false)
-      @ability = Ability.new(manager)
+      @manager = stub_model(Deadbolt::User, :admin? => false)
+      @manager.stub!(:roles) { [manager_role] }
     end
 
-    it { @ability.should be_able_to(:manage, Deadbolt::User) }
+    subject { Ability.new(@manager) }
+
+    it { should be_able_to(:manage, Deadbolt::User) }
   end
 
   context "user in role with object-level permissions" do
 
     before(:each) do
-      @manageable_user = mock_model(Deadbolt::User)
-      manage_user_permission = mock_model(Deadbolt::Permission,
+      @manageable_user = stub_model(Deadbolt::User)
+      manage_user_permission = stub_model(Deadbolt::Permission,
         :action => "manage", :target_type => "Deadbolt::User")
-      role_permission = mock_model(Deadbolt::RolePermission,
-        :permission => manage_user_permission,
-        :target_id => @manageable_user.id)
-      assistant_role = mock_model(Deadbolt::Role,
+      role_permission = stub_model(Deadbolt::RolePermission,
+        :target => @manageable_user)
+      role_permission.stub!(:permission) { manage_user_permission }
+      assistant_role = stub_model(Deadbolt::Role,
         :role_permissions => [role_permission])
-      assistant = mock_model(Deadbolt::User, :roles => [assistant_role],
-        :admin? => false)
-      @ability = Ability.new(assistant)
+      @assistant = stub_model(Deadbolt::User,:admin? => false)
+      @assistant.stub!(:roles) { [assistant_role] }
     end
 
-    it { @ability.should be_able_to(:manage, @manageable_user) }
+    subject { Ability.new(@assistant) }
+
+    it { should be_able_to(:manage, @manageable_user) }
   end
 end

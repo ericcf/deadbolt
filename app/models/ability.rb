@@ -18,10 +18,10 @@ class Ability
         permission = role_permission.permission
         action = permission.action.to_sym
         target_class = permission.target_type.constantize
-        if role_permission.target_id.nil?
+        unless role_permission.target
           can action, target_class
         else
-          can action, target_class, :id => role_permission.target_id
+          can action, role_permission.target
         end
       end
     end

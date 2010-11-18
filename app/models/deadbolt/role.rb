@@ -3,6 +3,7 @@ class Deadbolt::Role < ActiveRecord::Base
   has_many :role_assignments, :dependent => :destroy
   has_many :users, :through => :role_assignments
   has_many :role_permissions, :dependent => :destroy
+  accepts_nested_attributes_for :role_permissions, :allow_destroy => true
   has_many :permissions, :through => :role_permissions
 
   validates :name, :presence => true

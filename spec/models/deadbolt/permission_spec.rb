@@ -35,4 +35,13 @@ describe Deadbolt::Permission do
   end
 
   it { should_not allow_value("untie").for(:action) }
+
+  # methods
+
+  describe ".human_name" do
+
+    it "returns a human readable name for the permission" do
+      @permission.human_name.should eq("can manage (view, add, modify, delete) Deadbolt::Users")
+    end
+  end
 end
