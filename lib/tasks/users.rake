@@ -14,7 +14,7 @@ namespace :deadbolt do
     end
 
     desc "Creates an admin user with random password"
-    task :seed_admin, :email, :needs => :environment do |task, args|
+    task :seed_admin, [:email] => [:environment] do |task, args|
       pass = new_password
       admin = Deadbolt::User.create(:email => args[:email], :password => pass,
         :password_confirmation => pass)

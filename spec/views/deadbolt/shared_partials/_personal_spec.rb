@@ -25,9 +25,6 @@ describe "deadbolt/shared_partials/_personal" do
     it { rendered.should contain(@mock_user.email) }
 
     it { rendered.should have_selector("a",
-      :href => edit_user_registration_path, :content => "Preferences") }
-
-    it { rendered.should have_selector("a",
       :href => destroy_user_session_path, :content => "Sign out") }
   end
 end

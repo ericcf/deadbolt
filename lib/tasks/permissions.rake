@@ -22,7 +22,7 @@ namespace :deadbolt do
     end
 
     desc "Adds Permission records for specified class, e.g. rake deadbolt:permissions:create[Bagel]"
-    task :create, :target_class, :needs => :environment do |task, args|
+    task :create, [:target_class] => [:environment] do |task, args|
       puts "adding permissions for #{args[:target_class]}:"
       Deadbolt::Permission::Actions.each do |action|
         permission = create_permission action, args[:target_class]

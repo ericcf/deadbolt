@@ -2,8 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails'
 
-gem 'mysql2'
-gem 'mongrel', '= 1.2.0.pre2'
+gem 'mysql2', '~> 0.2.11'
 
 gem 'haml'
 gem 'devise'
@@ -13,7 +12,6 @@ gem 'formtastic'
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'
   gem 'rspec-rails', '>= 2.0.0'
-  gem 'autotest'
   gem 'webrat'
   gem 'shoulda'
   gem 'factory_girl'
