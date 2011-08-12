@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.authors = ["Eric Carty-Fickes"]
   spec.files = Dir["{app,config,public,lib}/**/*"]
 
-  spec.add_dependency("devise", ["~> 1.1.3"])
-  spec.add_dependency("cancan", ["~> 1.4.0"])
-  spec.add_dependency("formtastic", ["~> 1.1.0"])
+  spec.add_dependency("devise", ["~> 1.4.2"])
+  spec.add_dependency("cancan", ["~> 1.6.5"])
+  spec.add_dependency("formtastic", ["~> 2.0.0.rc3"])
 end
