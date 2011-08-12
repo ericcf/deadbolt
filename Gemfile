@@ -7,7 +7,7 @@ gem 'mysql2', '~> 0.2.11'
 gem 'haml'
 gem 'devise'
 gem 'cancan'
-gem 'formtastic'
+gem 'formtastic', '~> 2.0.0.rc3'
 
 group :development, :test do
   gem 'sqlite3-ruby', :require => 'sqlite3'

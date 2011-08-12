@@ -1,6 +1,6 @@
 = semantic_form_for @role, :url => (@role.new_record? ? roles_path : role_path(@role)) do |form|
   = form.inputs
-  = form.input :permissions, :as => :check_boxes, :label_method => :human_name
+  = form.input :permissions, :as => :check_boxes, :member_label => :human_name
   = form.buttons do
     = form.commit_button
     or
