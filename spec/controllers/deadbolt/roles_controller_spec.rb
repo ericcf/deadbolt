@@ -26,7 +26,7 @@ describe Deadbolt::RolesController do
     context "the requested role is found" do
 
       before(:each) do
-        Deadbolt::Role.stub!(:find).with(mock_role.id).
+        Deadbolt::Role.stub!(:find).with(mock_role.id.to_s).
           and_return(mock_role)
         controller.should_receive(:authorize!).with(:read, mock_role)
         get :show, :id => mock_role.id
@@ -69,7 +69,7 @@ describe Deadbolt::RolesController do
 
       before(:each) do
         Deadbolt::Role.should_receive(:new).
-          with("these" => :params).
+          with("these" => "params").
           and_return(mock_role)
         post :create, :deadbolt_role => { :these => :params }
       end
@@ -139,7 +139,7 @@ describe Deadbolt::RolesController do
 
         it "updates with the provided attributes" do
           mock_role.should_receive(:update_attributes).
-            with("these" => :params)
+            with("these" => "params")
           put :update, :id => mock_role.id,
             :deadbolt_role => { :these => :params }
         end

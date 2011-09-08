@@ -8,8 +8,6 @@ class Deadbolt::User < ActiveRecord::Base
   has_many :role_assignments, :dependent => :destroy
   has_many :roles, :through => :role_assignments
 
-  default_scope :order => :email
-
   def self.update_each_admin(users_admin_attributes)
     stringified_attributes = users_admin_attributes.stringify_keys
     all.each do |user|

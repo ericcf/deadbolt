@@ -26,7 +26,7 @@ describe Deadbolt::UsersController do
     context "requested user is found" do
 
       before(:each) do
-        Deadbolt::User.stub!(:find).with(mock_user.id).and_return(mock_user)
+        Deadbolt::User.stub!(:find).with(mock_user.id.to_s).and_return(mock_user)
         controller.should_receive(:authorize!).with(:update, mock_user)
         get :edit, :id => mock_user.id
       end
@@ -62,7 +62,7 @@ describe Deadbolt::UsersController do
 
         it "updates with the provided attributes" do
           mock_user.should_receive(:update_attributes).
-            with("these" => :params)
+            with("these" => "params")
           put :update, :id => mock_user.id,
             :deadbolt_user => { :these => :params }
         end
@@ -105,7 +105,7 @@ describe Deadbolt::UsersController do
   describe "PUT update_all" do
 
     before(:each) do
-      Deadbolt::User.should_receive(:update_each_admin).with("these" => :params)
+      Deadbolt::User.should_receive(:update_each_admin).with("these" => "params")
       controller.should_receive(:authorize!).with(:update, Deadbolt::User)
       put :update_all, :deadbolt_users => { :these => :params }
     end

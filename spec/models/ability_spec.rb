@@ -26,7 +26,7 @@ describe Ability do
         :action => "manage", :target_type => "Deadbolt::User")
       role_permission = stub_model(Deadbolt::RolePermission,
         :permission => manage_users_permission, :target_id => nil)
-      manager_role = stub_model(Deadbolt::Role,
+      manager_role = mock_model(Deadbolt::Role,
         :role_permissions => [role_permission])
       @manager = stub_model(Deadbolt::User, :admin? => false)
       @manager.stub!(:roles) { [manager_role] }
@@ -46,7 +46,7 @@ describe Ability do
       role_permission = stub_model(Deadbolt::RolePermission,
         :target => @manageable_user)
       role_permission.stub!(:permission) { manage_user_permission }
-      assistant_role = stub_model(Deadbolt::Role,
+      assistant_role = mock_model(Deadbolt::Role,
         :role_permissions => [role_permission])
       @assistant = stub_model(Deadbolt::User,:admin? => false)
       @assistant.stub!(:roles) { [assistant_role] }

@@ -4,7 +4,7 @@ describe "deadbolt/roles/new" do
 
   it "renders the form partial" do
     assign(:role, stub_model(Deadbolt::Role))
-    should_render_partial("form")
     render
+    should render_template(:partial => "_form")
   end
 end

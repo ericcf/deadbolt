@@ -2,15 +2,11 @@ require 'spec_helper'
 
 describe Deadbolt::Permission do
 
-  before(:each) do
-    role = mock_model(Deadbolt::Role, :valid? => true)
-    @valid_attributes = {
-      :action => "manage",
-      :target_type => "Deadbolt::User"
-    }
-    @permission = Deadbolt::Permission.create(@valid_attributes)
-    @permission.should be_valid
-  end
+  #let(:mock_role) { mock_model(Deadbolt::Role, :valid? => true) }
+  let(:valid_attributes) { { :action => "manage", :target_type => "Deadbolt::User" } }
+  let(:permission) { Deadbolt::Permission.create!(valid_attributes) }
+
+  subject { permission }
 
   # database
   
@@ -41,7 +37,15 @@ describe Deadbolt::Permission do
   describe ".human_name" do
 
     it "returns a human readable name for the permission" do
-      @permission.human_name.should eq("can manage (view, add, modify, delete) Deadbolt::Users")
+      permission.human_name.should eq("can manage (view, add, modify, delete) Deadbolt::Users")
+    end
+  end
+
+  describe "When creating an associated role" do
+
+    it "should also create an associated role permission" do
+      role = permission.roles.create :name => "Underling"
+      role.role_permissions.count.should eq(1)
     end
   end
 end
